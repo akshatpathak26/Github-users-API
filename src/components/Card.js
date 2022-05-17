@@ -3,7 +3,7 @@ import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 const Card = () => {
-  const {githubUser } = React.useContext(GithubContext)
+  const { githubUser } = React.useContext(GithubContext);
   const {
     avatar_url,
     html_url,
@@ -13,29 +13,32 @@ const Card = () => {
     bio,
     location,
     twitter_username,
-
-  }  = githubUser
-  
-  return <Wrapper>
-    <header>
-      <img src={avatar_url} alt={name} />
-      <div>
-        <h4>{name}</h4>
-        <p>@{twitter_username || 'akshat pathak'}</p>
+  } = githubUser;
+  return (
+    <Wrapper>
+      <header>
+        <img src={avatar_url} alt={name} />
+        <div>
+          <h4>{name}</h4>
+          <p>@{twitter_username }</p>
+        </div>
+        <a href={html_url}>follow</a>
+      </header>
+      <p className='bio'>{bio}</p>
+      <div className='links'>
+        <p>
+          <MdBusiness></MdBusiness> {company}
+        </p>
+        <p>
+          <MdLocationOn></MdLocationOn> {location || 'earth'}
+        </p>
+        <a href={`https://${blog}`}>
+          <MdLink></MdLink>
+          {blog}
+        </a>
       </div>
-      <a href={html_url}> follow </a>
-    </header>
-    <p className='bio'>{bio}</p>
-    <div className='links'>
-      <p>
-        <MdBusiness></MdBusiness> {company}
-      </p>
-      <p>
-        <MdLocationOn></MdLocationOn> {location || 'earth'}
-      </p>
-      <a href={`https://${blog}`}> <MdLink></MdLink> {blog}</a>
-    </div>
-  </Wrapper>;
+    </Wrapper>
+  );
 };
 const Wrapper = styled.article`
   background: var(--clr-white);
